@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('nama_lapangan');
             $table->string('jenis_lapangan');
             $table->text('deskripsi')->nullable();
-            $table->decimal('harga', 10, 2);
             $table->timestamps();
         });
     }

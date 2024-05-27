@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('booking', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('penyewa_id')->constrained('penyewa');
             $table->foreignId('lapangan_id')->constrained('lapangan');
             $table->date('tanggal_main');
-            $table->time('jam_mulai');
-            $table->time('jam_selesai');
-            $table->enum('status', ['DP', 'LUNAS', 'CANCEL', 'SELESAI'])->default('DP');
+            $table->string('nama_penyewa');
+            $table->string('no_telp')->nullable();
+            $table->string('email')->unique();
+            $table->integer('dp')->default(50000); 
+            $table->boolean('lunas')->nullable(); 
+            $table->string('bukti')->nullable();
             $table->timestamps();
         });
     }

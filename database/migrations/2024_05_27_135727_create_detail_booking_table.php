@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('konfirmasi_pembayaran', function (Blueprint $table) {
+        Schema::create('detail_booking', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('lapangan_id')->constrained('lapangan');
             $table->foreignId('booking_id')->constrained('booking');
-            $table->string('atas_nama');
-            $table->string('bukti')->nullable();
-            $table->decimal('total', 10, 2);
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
+            $table->enum('status', ['DP', 'LUNAS', 'CANCEL'])->default('DP');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('konfirmasi_pembayaran');
+        Schema::dropIfExists('detail_booking');
     }
 };
